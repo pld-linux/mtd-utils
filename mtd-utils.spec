@@ -1,5 +1,5 @@
 Summary:	MTD (Memory Technology Devices) utilities
-Summary(pl):	Narzêdzia MTD (Memory Technology Devices)
+Summary(pl.UTF-8):   NarzÄ™dzia MTD (Memory Technology Devices)
 Name:		mtd-utils
 Version:	1.0.0
 Release:	0.1
@@ -17,20 +17,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 MTD are utilities for jffs (Journalling Flash File System), like
 mkfs.jffs2 and NAND Flash devices.
 
-%description -l pl
-Programy MTD zawieraj± narzêdzia do jffs (Journalling Flash File
-System), jak mkfs.jffs2 oraz urz±dzeñ NAND Flash.
+%description -l pl.UTF-8
+Programy MTD zawierajÄ… narzÄ™dzia do jffs (Journalling Flash File
+System), jak mkfs.jffs2 oraz urzÄ…dzeÅ„ NAND Flash.
 
 %package devel
 Summary:	Header files for MTD utilities
-Summary(pl):	Pliki nag³ówkowe dla narzêdzi MTD
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla narzÄ™dzi MTD
 Group:		Development/Libraries
 
 %description devel
 Header files for MTD utilities.
 
-%description devel -l pl
-Pliki nag³ówkowe dla narzêdzi MTD.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe dla narzÄ™dzi MTD.
 
 %prep
 %setup -q
