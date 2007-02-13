@@ -1,5 +1,5 @@
 Summary:	MTD (Memory Technology Devices) utilities
-Summary(pl.UTF-8):   Narzędzia MTD (Memory Technology Devices)
+Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
 Version:	1.0.0
 Release:	0.1
@@ -23,7 +23,7 @@ System), jak mkfs.jffs2 oraz urządzeń NAND Flash.
 
 %package devel
 Summary:	Header files for MTD utilities
-Summary(pl.UTF-8):   Pliki nagłówkowe dla narzędzi MTD
+Summary(pl.UTF-8):	Pliki nagłówkowe dla narzędzi MTD
 Group:		Development/Libraries
 
 %description devel
