@@ -1,14 +1,16 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	1.0.1
-Release:	0.1
+Version:	1.5.0
+Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.gz
-# Source0-md5:	55c8214e1ef052ecc8a0fac45325f719
+Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
+# Source0-md5:	7332f1143be4ba8ee2de3096cbd3b03b
 URL:		http://www.linux-mtd.infradead.org/
 BuildRequires:	sed >= 4.0
+BuildRequires:	libuuid-devel
+BuildRequires:	lzo-devel >= 2
 BuildRequires:	zlib-devel
 Obsoletes:	mtd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -37,20 +39,21 @@ Pliki nagłówkowe dla narzędzi MTD.
 sed -e '/install:/s/${TARGETS}//' -i Makefile
 
 %build
+CFLAGS="%{rpmcflags}" \
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -I./include -Wall"	\
 	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_includedir}
+install -d $RPM_BUILD_ROOT{%{_includedir},%{_libdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	MANDIR=%{_mandir}
 
-cp -r include/mtd $RPM_BUILD_ROOT%{_includedir}/
+cp -r include/mtd $RPM_BUILD_ROOT%{_includedir}
+cp -p lib/libmtd.a $RPM_BUILD_ROOT%{_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -58,9 +61,37 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc device_table.txt
-%attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man1/*
+%attr(755,root,root) %{_sbindir}/doc_loadbios
+%attr(755,root,root) %{_sbindir}/docfdisk
+%attr(755,root,root) %{_sbindir}/flash_erase
+%attr(755,root,root) %{_sbindir}/flash_eraseall
+%attr(755,root,root) %{_sbindir}/flash_lock
+%attr(755,root,root) %{_sbindir}/flash_otp_dump
+%attr(755,root,root) %{_sbindir}/flash_otp_info
+%attr(755,root,root) %{_sbindir}/flash_unlock
+%attr(755,root,root) %{_sbindir}/flashcp
+%attr(755,root,root) %{_sbindir}/ftl_check
+%attr(755,root,root) %{_sbindir}/ftl_format
+%attr(755,root,root) %{_sbindir}/jffs2dump
+%attr(755,root,root) %{_sbindir}/jffs2reader
+%attr(755,root,root) %{_sbindir}/mkfs.jffs2
+%attr(755,root,root) %{_sbindir}/mkfs.ubifs
+%attr(755,root,root) %{_sbindir}/mtd_debug
+%attr(755,root,root) %{_sbindir}/mtdinfo
+%attr(755,root,root) %{_sbindir}/nanddump
+%attr(755,root,root) %{_sbindir}/nandtest
+%attr(755,root,root) %{_sbindir}/nandwrite
+%attr(755,root,root) %{_sbindir}/nftl_format
+%attr(755,root,root) %{_sbindir}/nftldump
+%attr(755,root,root) %{_sbindir}/recv_image
+%attr(755,root,root) %{_sbindir}/rfddump
+%attr(755,root,root) %{_sbindir}/rfdformat
+%attr(755,root,root) %{_sbindir}/serve_image
+%attr(755,root,root) %{_sbindir}/sumtool
+%attr(755,root,root) %{_sbindir}/ubi*
+%{_mandir}/man1/mkfs.jffs2.1*
 
 %files devel
 %defattr(644,root,root,755)
+%{_libdir}/libmtd.a
 %{_includedir}/mtd
