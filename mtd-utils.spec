@@ -1,12 +1,12 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	1.5.0
+Version:	1.5.1
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	7332f1143be4ba8ee2de3096cbd3b03b
+# Source0-md5:	4ad1f758d49615efe14edb107eddac5c
 URL:		http://www.linux-mtd.infradead.org/
 BuildRequires:	sed >= 4.0
 BuildRequires:	libuuid-devel
@@ -42,7 +42,8 @@ sed -e '/install:/s/${TARGETS}//' -i Makefile
 CFLAGS="%{rpmcflags}" \
 %{__make} \
 	CC="%{__cc}" \
-	LDFLAGS="%{rpmldflags}"
+	LDFLAGS="%{rpmldflags}" \
+	V=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -68,6 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/flash_lock
 %attr(755,root,root) %{_sbindir}/flash_otp_dump
 %attr(755,root,root) %{_sbindir}/flash_otp_info
+%attr(755,root,root) %{_sbindir}/flash_otp_lock
+%attr(755,root,root) %{_sbindir}/flash_otp_write
 %attr(755,root,root) %{_sbindir}/flash_unlock
 %attr(755,root,root) %{_sbindir}/flashcp
 %attr(755,root,root) %{_sbindir}/ftl_check
