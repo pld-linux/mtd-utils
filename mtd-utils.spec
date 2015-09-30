@@ -1,12 +1,12 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	1.5.1
+Version:	1.5.2
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	4ad1f758d49615efe14edb107eddac5c
+# Source0-md5:	596bc7b20a6d4fb86d63fc9b8af674d6
 URL:		http://www.linux-mtd.infradead.org/
 BuildRequires:	sed >= 4.0
 BuildRequires:	libuuid-devel
@@ -81,6 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/mkfs.ubifs
 %attr(755,root,root) %{_sbindir}/mtd_debug
 %attr(755,root,root) %{_sbindir}/mtdinfo
+%attr(755,root,root) %{_sbindir}/mtdpart
 %attr(755,root,root) %{_sbindir}/nanddump
 %attr(755,root,root) %{_sbindir}/nandtest
 %attr(755,root,root) %{_sbindir}/nandwrite
