@@ -1,18 +1,24 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	1.5.2
+Version:	2.1.2
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	596bc7b20a6d4fb86d63fc9b8af674d6
+# Source0-md5:	19191bc0195a779c0bd1284c886084ab
 URL:		http://www.linux-mtd.infradead.org/
-BuildRequires:	sed >= 4.0
+BuildRequires:	acl-devel
+# for tests
+#BuildRequires:	cmocka-devel
+BuildRequires:	libselinux-devel
 BuildRequires:	libuuid-devel
 BuildRequires:	lzo-devel >= 2
+BuildRequires:	openssl-devel
+BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
-Obsoletes:	mtd
+BuildRequires:	zstd-devel
+Obsoletes:	mtd < 20050701
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,32 +42,29 @@ Pliki nagłówkowe dla narzędzi MTD.
 
 %prep
 %setup -q
-sed -e '/install:/s/${TARGETS}//' -i Makefile
 
 %build
-CFLAGS="%{rpmcflags}" \
-%{__make} \
-	CC="%{__cc}" \
-	LDFLAGS="%{rpmldflags}" \
-	V=1
+%configure \
+	--disable-silent-rules
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_includedir},%{_libdir}}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	MANDIR=%{_mandir}
+	DESTDIR=$RPM_BUILD_ROOT
 
-cp -r include/mtd $RPM_BUILD_ROOT%{_includedir}
-cp -p lib/libmtd.a $RPM_BUILD_ROOT%{_libdir}
+cp -pr include/mtd $RPM_BUILD_ROOT%{_includedir}
+cp -p libmtd.a $RPM_BUILD_ROOT%{_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc device_table.txt
+%doc jffsX-utils/device_table.txt lib/LICENSE.libiniparser ubifs-utils/mkfs.ubifs/README
 %attr(755,root,root) %{_sbindir}/doc_loadbios
 %attr(755,root,root) %{_sbindir}/docfdisk
 %attr(755,root,root) %{_sbindir}/flash_erase
@@ -77,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/ftl_format
 %attr(755,root,root) %{_sbindir}/jffs2dump
 %attr(755,root,root) %{_sbindir}/jffs2reader
+%attr(755,root,root) %{_sbindir}/lsmtd
 %attr(755,root,root) %{_sbindir}/mkfs.jffs2
 %attr(755,root,root) %{_sbindir}/mkfs.ubifs
 %attr(755,root,root) %{_sbindir}/mtd_debug
@@ -94,6 +98,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/sumtool
 %attr(755,root,root) %{_sbindir}/ubi*
 %{_mandir}/man1/mkfs.jffs2.1*
+%{_mandir}/man8/lsmtd.8*
+%{_mandir}/man8/ubinize.8*
 
 %files devel
 %defattr(644,root,root,755)
