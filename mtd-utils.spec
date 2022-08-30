@@ -1,12 +1,12 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	2.1.2
-Release:	2
+Version:	2.1.4
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	19191bc0195a779c0bd1284c886084ab
+# Source0-md5:	f1dc14163903dfecd4fe474e0fdcf606
 URL:		http://www.linux-mtd.infradead.org/
 BuildRequires:	acl-devel
 # for tests
@@ -45,7 +45,8 @@ Pliki nagłówkowe dla narzędzi MTD.
 
 %build
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--disable-tests
 
 %{__make}
 
@@ -67,10 +68,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc jffsX-utils/device_table.txt lib/LICENSE.libiniparser ubifs-utils/mkfs.ubifs/README
 %attr(755,root,root) %{_sbindir}/doc_loadbios
 %attr(755,root,root) %{_sbindir}/docfdisk
+%attr(755,root,root) %{_sbindir}/fectest
 %attr(755,root,root) %{_sbindir}/flash_erase
 %attr(755,root,root) %{_sbindir}/flash_eraseall
 %attr(755,root,root) %{_sbindir}/flash_lock
 %attr(755,root,root) %{_sbindir}/flash_otp_dump
+%attr(755,root,root) %{_sbindir}/flash_otp_erase
 %attr(755,root,root) %{_sbindir}/flash_otp_info
 %attr(755,root,root) %{_sbindir}/flash_otp_lock
 %attr(755,root,root) %{_sbindir}/flash_otp_write
@@ -83,10 +86,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/lsmtd
 %attr(755,root,root) %{_sbindir}/mkfs.jffs2
 %attr(755,root,root) %{_sbindir}/mkfs.ubifs
+%attr(755,root,root) %{_sbindir}/mount.ubifs
 %attr(755,root,root) %{_sbindir}/mtd_debug
 %attr(755,root,root) %{_sbindir}/mtdinfo
 %attr(755,root,root) %{_sbindir}/mtdpart
 %attr(755,root,root) %{_sbindir}/nanddump
+%attr(755,root,root) %{_sbindir}/nandflipbits
 %attr(755,root,root) %{_sbindir}/nandtest
 %attr(755,root,root) %{_sbindir}/nandwrite
 %attr(755,root,root) %{_sbindir}/nftl_format
