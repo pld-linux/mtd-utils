@@ -1,12 +1,12 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	2.1.5
+Version:	2.1.6
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	1fc83c1ca90093dd79443a603c35e987
+# Source0-md5:	2851d4b13e5c1cf9415f76102a34d623
 URL:		http://www.linux-mtd.infradead.org/
 BuildRequires:	acl-devel
 # for tests
