@@ -1,12 +1,12 @@
 Summary:	MTD (Memory Technology Devices) utilities
 Summary(pl.UTF-8):	Narzędzia MTD (Memory Technology Devices)
 Name:		mtd-utils
-Version:	2.2.1
+Version:	2.3.0
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	ftp://ftp.infradead.org/pub/mtd-utils/%{name}-%{version}.tar.bz2
-# Source0-md5:	08b97c0df7e70916a7b42460b5030fff
+# Source0-md5:	06be1bd123cfea8575829e9b16e84f4b
 URL:		http://www.linux-mtd.infradead.org/
 BuildRequires:	acl-devel
 # for tests
@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc jffsX-utils/device_table.txt lib/LICENSE.libiniparser ubifs-utils/mkfs.ubifs/README
+%doc CHANGELOG.md README.txt jffsX-utils/device_table.txt lib/LICENSE.libiniparser
 %attr(755,root,root) %{_sbindir}/doc_loadbios
 %attr(755,root,root) %{_sbindir}/docfdisk
 %attr(755,root,root) %{_sbindir}/fectest
@@ -79,6 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/flash_otp_write
 %attr(755,root,root) %{_sbindir}/flash_unlock
 %attr(755,root,root) %{_sbindir}/flashcp
+%attr(755,root,root) %{_sbindir}/fsck.ubifs
 %attr(755,root,root) %{_sbindir}/ftl_check
 %attr(755,root,root) %{_sbindir}/ftl_format
 %attr(755,root,root) %{_sbindir}/jffs2dump
